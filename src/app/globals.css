@@ -38,3 +38,203 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #3b82f6;
 }
+
+/* ─────────────────────────────────────────────
+   Prose / Markdown Content Styles
+   Used by .prose-content in blog post pages
+───────────────────────────────────────────── */
+.prose-content {
+  color: #a1a1aa; /* zinc-400 */
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.prose-content h1,
+.prose-content h2,
+.prose-content h3,
+.prose-content h4,
+.prose-content h5,
+.prose-content h6 {
+  color: #fafafa;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  scroll-margin-top: 80px;
+}
+
+.prose-content h1 { font-size: 2rem; }
+.prose-content h2 {
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #27272a;
+}
+.prose-content h3 { font-size: 1.2rem; color: #e4e4e7; }
+.prose-content h4 { font-size: 1rem; color: #e4e4e7; }
+
+/* Heading anchor links */
+.prose-content .heading-anchor {
+  text-decoration: none;
+  color: inherit;
+}
+.prose-content .heading-anchor:hover::after {
+  content: " #";
+  color: #3b82f6;
+  font-weight: 400;
+}
+
+.prose-content p {
+  margin-bottom: 1.25rem;
+}
+
+.prose-content a {
+  color: #60a5fa;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+.prose-content a:hover {
+  color: #93c5fd;
+}
+
+.prose-content strong {
+  color: #e4e4e7;
+  font-weight: 600;
+}
+
+.prose-content em {
+  color: #d4d4d8;
+  font-style: italic;
+}
+
+/* Lists */
+.prose-content ul,
+.prose-content ol {
+  margin: 1rem 0 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.prose-content ul { list-style-type: disc; }
+.prose-content ol { list-style-type: decimal; }
+.prose-content li { padding-left: 0.25rem; }
+.prose-content li::marker { color: #3b82f6; }
+
+/* Blockquotes */
+.prose-content blockquote {
+  border-left: 3px solid #3b82f6;
+  margin: 1.5rem 0;
+  padding: 0.75rem 1.25rem;
+  background: rgba(59, 130, 246, 0.07);
+  border-radius: 0 8px 8px 0;
+  color: #a1a1aa;
+  font-style: italic;
+}
+.prose-content blockquote p { margin: 0; }
+
+/* Inline code */
+.prose-content :not(pre) > code {
+  background: #18181b;
+  color: #7dd3fc;
+  padding: 0.2em 0.45em;
+  border-radius: 5px;
+  font-size: 0.875em;
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  border: 1px solid #27272a;
+}
+
+/* Code blocks — styled by rehype-pretty-code */
+.prose-content pre {
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  overflow: auto;
+  border: 1px solid #27272a;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.prose-content pre code {
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+}
+
+/* rehype-pretty-code: title bar */
+.prose-content [data-rehype-pretty-code-figure] {
+  position: relative;
+  margin: 1.5rem 0;
+}
+.prose-content [data-rehype-pretty-code-title] {
+  background: #18181b;
+  border: 1px solid #27272a;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-family: ui-monospace, monospace;
+  color: #71717a;
+}
+.prose-content [data-rehype-pretty-code-title] + pre {
+  margin-top: 0;
+  border-radius: 0 0 12px 12px;
+}
+
+/* Line numbers */
+.prose-content code[data-line-numbers] {
+  counter-reset: line;
+}
+.prose-content code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: #3f3f46;
+}
+
+/* Highlighted lines */
+.prose-content [data-highlighted-line] {
+  background: rgba(59, 130, 246, 0.12);
+  border-left: 2px solid #3b82f6;
+}
+
+/* Tables */
+.prose-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+}
+.prose-content thead {
+  background: #18181b;
+}
+.prose-content th {
+  color: #e4e4e7;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid #3f3f46;
+}
+.prose-content td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #27272a;
+  color: #a1a1aa;
+  vertical-align: top;
+}
+.prose-content tr:hover td {
+  background: #18181b;
+}
+
+/* Horizontal rule */
+.prose-content hr {
+  border: none;
+  border-top: 1px solid #27272a;
+  margin: 2.5rem 0;
+}
+
+/* Images */
+.prose-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  border: 1px solid #27272a;
+  margin: 1.5rem 0;
+}

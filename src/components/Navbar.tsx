@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
+  { label: "Blog", href: "/blog", external: false },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -38,15 +40,25 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith("/") ? (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors"
+              >
+                {link.label}
+              </a>
+            )
+          )}
           <a
             href="https://drive.google.com/file/d/1nhTYvt1FnTJ6nMsw7eqvgBLDrxiC7Ydy/view?usp=sharing"
             target="_blank"
@@ -80,7 +92,16 @@ export default function Navbar() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden bg-zinc-900/95 backdrop-blur-md border-b border-zinc-800 px-6 py-4 flex flex-col gap-4">
-          {navLinks.map((link) => (
+          {navLinks.map((link) => link.href.startsWith("/") ? (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-zinc-300 hover:text-zinc-100 transition-colors text-sm"
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ) : (
             <a
               key={link.href}
               href={link.href}
