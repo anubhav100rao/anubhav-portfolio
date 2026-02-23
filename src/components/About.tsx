@@ -1,17 +1,21 @@
 import { education } from "@/lib/data";
+import FadeIn from "@/components/FadeIn";
 
 export default function About() {
   return (
     <section id="about" className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
-        <SectionLabel>About</SectionLabel>
-        <h2 className="text-3xl md:text-4xl font-bold text-zinc-100 mt-3 mb-10">
-          Who I Am
-        </h2>
+        <FadeIn direction="left"><SectionLabel>About</SectionLabel></FadeIn>
+        <FadeIn delay={0.05}>
+          <h2 className="text-3xl md:text-4xl font-bold text-zinc-100 mt-3 mb-10">
+            Who I Am
+          </h2>
+        </FadeIn>
 
         <div className="grid md:grid-cols-5 gap-12">
           {/* Bio */}
-          <div className="md:col-span-3 space-y-4 text-zinc-400 leading-relaxed text-[15px]">
+          <FadeIn delay={0.1} className="md:col-span-3">
+          <div className="space-y-4 text-zinc-400 leading-relaxed text-[15px]">
             <p>
               I&apos;m a software engineer who thrives at the intersection of{" "}
               <span className="text-zinc-200 font-medium">systems engineering</span> and{" "}
@@ -44,9 +48,11 @@ export default function About() {
               with a B.Tech in ECE (GPA: 8.65/10).
             </p>
           </div>
+          </FadeIn>
 
           {/* Education */}
-          <div className="md:col-span-2">
+          <FadeIn delay={0.2} className="md:col-span-2">
+          <div>
             <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-widest mb-5">
               Education
             </h3>
@@ -86,6 +92,7 @@ export default function About() {
               ))}
             </div>
           </div>
+          </FadeIn>
         </div>
       </div>
     </section>

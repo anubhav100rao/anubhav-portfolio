@@ -1,4 +1,5 @@
 import { projects } from "@/lib/data";
+import FadeIn from "@/components/FadeIn";
 
 export default function Projects() {
   return (
@@ -13,8 +14,10 @@ export default function Projects() {
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project) => (
-            <ProjectCard key={project.name} project={project} />
+          {projects.map((project, i) => (
+            <FadeIn key={project.name} delay={i * 0.07}>
+              <ProjectCard project={project} />
+            </FadeIn>
           ))}
         </div>
       </div>

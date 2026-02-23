@@ -8,19 +8,48 @@ const navLinks = [
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
-  { label: "Blog", href: "/blog", external: false },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "#contact" },
 ];
+
+const SECTION_IDS = ["hero", "about", "experience", "projects", "skills", "blog", "contact"];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Scroll-spy: track which section is in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+    );
+
+    SECTION_IDS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const isActive = (href: string) => {
+    if (href.startsWith("/")) return false; // never highlight external routes on homepage
+    return `#${activeSection}` === href;
+  };
 
   return (
     <nav
@@ -53,9 +82,16 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors"
+                className={`text-sm transition-colors relative ${
+                  isActive(link.href)
+                    ? "text-zinc-100"
+                    : "text-zinc-400 hover:text-zinc-100"
+                }`}
               >
                 {link.label}
+                {isActive(link.href) && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-blue-500 rounded-full" />
+                )}
               </a>
             )
           )}
@@ -76,15 +112,9 @@ export default function Navbar() {
           aria-label="Toggle menu"
         >
           <div className="w-5 flex flex-col gap-1">
-            <span
-              className={`h-0.5 bg-current transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`}
-            />
-            <span
-              className={`h-0.5 bg-current transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`h-0.5 bg-current transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
-            />
+            <span className={`h-0.5 bg-current transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
+            <span className={`h-0.5 bg-current transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`h-0.5 bg-current transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
           </div>
         </button>
       </div>
@@ -92,25 +122,29 @@ export default function Navbar() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden bg-zinc-900/95 backdrop-blur-md border-b border-zinc-800 px-6 py-4 flex flex-col gap-4">
-          {navLinks.map((link) => link.href.startsWith("/") ? (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-zinc-300 hover:text-zinc-100 transition-colors text-sm"
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ) : (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-zinc-300 hover:text-zinc-100 transition-colors text-sm"
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith("/") ? (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-zinc-300 hover:text-zinc-100 transition-colors text-sm"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`text-sm transition-colors ${
+                  isActive(link.href) ? "text-blue-400 font-medium" : "text-zinc-300 hover:text-zinc-100"
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            )
+          )}
           <a
             href="https://drive.google.com/file/d/1nhTYvt1FnTJ6nMsw7eqvgBLDrxiC7Ydy/view?usp=sharing"
             target="_blank"

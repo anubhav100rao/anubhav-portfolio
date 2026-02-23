@@ -1,4 +1,5 @@
 import { experiences } from "@/lib/data";
+import FadeIn from "@/components/FadeIn";
 
 export default function Experience() {
   return (
@@ -15,7 +16,8 @@ export default function Experience() {
 
           <div className="space-y-10">
             {experiences.map((exp, i) => (
-              <div key={i} className="relative md:pl-16 group">
+              <FadeIn key={i} delay={i * 0.08}>
+              <div className="relative md:pl-16 group">
                 {/* Dot */}
                 <div
                   className="absolute left-4 top-5 w-4 h-4 rounded-full border-2 border-zinc-800 hidden md:block transition-all duration-300 group-hover:scale-125"
@@ -60,6 +62,7 @@ export default function Experience() {
                   </ul>
                 </div>
               </div>
+              </FadeIn>
             ))}
           </div>
         </div>

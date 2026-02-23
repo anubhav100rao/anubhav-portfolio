@@ -1,4 +1,5 @@
 import { skills } from "@/lib/data";
+import FadeIn from "@/components/FadeIn";
 
 const categoryColors: Record<string, string> = {
   Languages: "#3b82f6",
@@ -19,11 +20,11 @@ export default function Skills() {
         </h2>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {Object.entries(skills).map(([category, items]) => {
+          {Object.entries(skills).map(([category, items], i) => {
             const color = categoryColors[category] ?? "#3b82f6";
             return (
+              <FadeIn key={category} delay={i * 0.06}>
               <div
-                key={category}
                 className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-zinc-700 transition-colors"
               >
                 <div className="flex items-center gap-2.5 mb-4">
@@ -49,6 +50,7 @@ export default function Skills() {
                   ))}
                 </div>
               </div>
+              </FadeIn>
             );
           })}
         </div>
