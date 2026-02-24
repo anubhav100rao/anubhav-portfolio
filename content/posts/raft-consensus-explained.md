@@ -6,6 +6,8 @@ description: "Raft is beautiful once you visualize it. I built Rafty — a real-
 readTime: "10 min"
 ---
 
+**GitHub Repository:** [View Source Code](https://github.com/anubhav100rao)
+
 Raft is one of those algorithms that looks simple on paper but has surprising depth. After reading the original paper ("In Search of an Understandable Consensus Algorithm") three times, I still felt like I was missing something. So I built **Rafty** — a real-time visualizer of a 5-node Raft cluster — and everything clicked.
 
 This post explains Raft's three core mechanisms and how I implemented them.

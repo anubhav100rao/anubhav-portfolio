@@ -69,6 +69,17 @@ export const experiences = [
 
 export const projects = [
   {
+    name: "AnubhavOS",
+    subtitle: "Educational Operating System",
+    description:
+      "A from-scratch, educational 32-bit x86 operating system written in C and NASM assembly. Boots via GRUB, runs an interactive shell with syscalls, keyboard input, filesystem, and VGA text-mode display — all with zero external dependencies.",
+    tags: ["C", "Assembly", "x86", "Operating System", "GRUB"],
+    category: "Operating System",
+    period: "Feb 2026",
+    github: "https://github.com/anubhav100rao/lightstreak-os",
+    color: "#ef4444",
+  },
+  {
     name: "Trade Agent",
     subtitle: "Multi-Market AI Agent",
     description:

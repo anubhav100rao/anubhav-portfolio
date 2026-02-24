@@ -6,6 +6,8 @@ description: "How I built a SQL-compliant transactional database engine in Go wi
 readTime: "12 min"
 ---
 
+**GitHub Repository:** [View Source Code](https://github.com/anubhav100rao)
+
 Building a database from scratch is one of the best ways to deeply understand how systems work. This post walks through the key design decisions and implementation details of MiniDB — a transactional database engine I built in Go over two months.
 
 ## Why Build a Database?
