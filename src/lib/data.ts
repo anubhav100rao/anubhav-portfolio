@@ -164,3 +164,34 @@ export const education = [
     gpa: "96.2%",
   },
 ];
+
+export const achievements = [
+  {
+    platform: "Codeforces",
+    rating: "Expert (1700+)",
+    description: "Achieved ranks of 300th, 561st, 725th, and 739th out of 40,000 participants across over 120 contests.",
+    link: "https://codeforces.com/profile/anubhav100rao",
+    color: "#3b82f6",
+  },
+  {
+    platform: "CodeChef",
+    rating: "5-Star (2077)",
+    description: "Attained 5-star rating, securing global ranks of 35th, 43rd, 65th, 81st, and 87th among 20,000 participants.",
+    link: "https://www.codechef.com/users/anubhav100rao",
+    color: "#8b5cf6",
+  },
+  {
+    platform: "LeetCode",
+    rating: "Guardian (2404)",
+    description: "Top 0.37% of users worldwide. Ranked 40th and 95th globally among 30,000 users.",
+    link: "https://leetcode.com/anubhav100rao/",
+    color: "#f59e0b",
+  },
+  {
+    platform: "Community & Leadership",
+    rating: "Roles",
+    description: "LeetCode rated contest tester. Problem setter on CodeChef, Codeforces, and HackerEarth. GDSC IIITA wing lead.",
+    link: "",
+    color: "#10b981",
+  },
+];

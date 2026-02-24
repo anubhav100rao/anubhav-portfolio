@@ -7,6 +7,8 @@
 - Network:       http://192.168.1.2:3000
 
 ✓ Starting...
-✓ Ready in 656ms
- GET /blog 200 in 673ms (compile: 529ms, render: 145ms)
- GET /blog/linux-fs-simulator 200 in 537ms (compile: 405ms, generate-params: 332ms, render: 132ms)
+✓ Ready in 614ms
+ GET / 200 in 907ms (compile: 583ms, render: 324ms)
+ GET / 200 in 246ms (compile: 13ms, render: 233ms)
+ GET /blog 200 in 113ms (compile: 66ms, render: 47ms)
+ GET / 200 in 54ms (compile: 10ms, render: 44ms)
