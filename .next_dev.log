@@ -12,3 +12,5 @@
  GET / 200 in 246ms (compile: 13ms, render: 233ms)
  GET /blog 200 in 113ms (compile: 66ms, render: 47ms)
  GET / 200 in 54ms (compile: 10ms, render: 44ms)
+ GET /blog 200 in 39ms (compile: 10ms, render: 29ms)
+ GET /blog 200 in 90ms (compile: 4ms, render: 85ms)

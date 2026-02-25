@@ -55,11 +55,7 @@ export default function Hero() {
       />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 py-32 text-center">
-        {/* Status badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-xs text-zinc-400 mb-8">
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          Open to opportunities · India · Remote
-        </div>
+
 
         <h1 className="text-5xl md:text-7xl font-bold text-zinc-100 tracking-tight mb-4">
           Anubhav Kumar{" "}
