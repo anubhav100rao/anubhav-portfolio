@@ -5,10 +5,10 @@ import { personalInfo } from "@/lib/data";
 
 const roles = [
   "Software Engineer @ Coinbase",
-  "Systems Builder",
+  "Distributed Systems Engineer",
   "LLM Platform Engineer",
-  "Distributed Systems Nerd",
-  "Open Source Contributor",
+  "Database & Infrastructure Builder",
+  "Open Source Systems Contributor",
 ];
 
 export default function Hero() {
