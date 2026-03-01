@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { getAllPostsMeta, formatDate } from "@/lib/posts";
+import { getAllPostsMeta } from "@/lib/posts";
 import type { Metadata } from "next";
+import BlogListClient from "@/components/BlogListClient";
 
 export const metadata: Metadata = {
   title: "Blog — Anubhav Kumar Rao",
@@ -57,44 +58,7 @@ export default function BlogPage() {
             <p className="text-lg">No posts yet — check back soon.</p>
           </div>
         ) : (
-          <div className="divide-y divide-zinc-800/60">
-            {posts.map((post) => (
-              <article key={post.slug} className="py-8 group">
-                <Link href={`/blog/${post.slug}`} className="block">
-                  {/* Meta row */}
-                  <div className="flex flex-wrap items-center gap-3 mb-3">
-                    <time className="text-xs text-zinc-500 font-mono">
-                      {formatDate(post.date)}
-                    </time>
-                    <span className="text-zinc-700">·</span>
-                    <span className="text-xs text-zinc-500">{post.readTime} read</span>
-                  </div>
-
-                  {/* Title */}
-                  <h2 className="text-xl font-semibold text-zinc-100 mb-2 group-hover:text-blue-400 transition-colors leading-snug">
-                    {post.title}
-                  </h2>
-
-                  {/* Description */}
-                  <p className="text-zinc-400 text-sm leading-relaxed mb-4">
-                    {post.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs font-mono text-zinc-500 bg-zinc-900 border border-zinc-800 px-2.5 py-1 rounded-md"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </Link>
-              </article>
-            ))}
-          </div>
+          <BlogListClient posts={posts} />
         )}
 
         {/* Footer note */}
