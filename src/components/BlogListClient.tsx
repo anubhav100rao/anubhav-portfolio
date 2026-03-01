@@ -2,7 +2,16 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { formatDate, type PostMeta } from "@/lib/posts";
+import type { PostMeta } from "@/lib/posts";
+
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 
 type BlogListClientProps = {
   posts: PostMeta[];
@@ -57,11 +66,10 @@ export default function BlogListClient({ posts }: BlogListClientProps) {
                 key={tag}
                 type="button"
                 onClick={() => setActiveTag(tag)}
-                className={`text-xs font-mono px-3 py-1.5 rounded-md border transition-colors ${
-                  selected
+                className={`text-xs font-mono px-3 py-1.5 rounded-md border transition-colors ${selected
                     ? "text-blue-300 bg-blue-500/15 border-blue-500/40"
                     : "text-zinc-500 bg-zinc-900 border-zinc-800 hover:text-zinc-300 hover:border-zinc-700"
-                }`}
+                  }`}
               >
                 {tag}
               </button>
