@@ -113,6 +113,17 @@ export const projects = [
     color: "#10b981",
   },
   {
+    name: "CRDTs",
+    subtitle: "Collaborative Document Editor",
+    description:
+      "A real-time collaborative document editor built from scratch using CRDTs (Conflict-free Replicated Data Types). Implements the RGA algorithm with tombstone-based deletion, an insert backlog for out-of-order operations, and deterministic tie-breaking — enabling conflict-free multi-user editing over WebSockets with zero central coordination.",
+    tags: ["TypeScript", "React", "WebSockets", "CRDTs", "Monaco Editor", "Node.js"],
+    category: "Distributed Systems",
+    period: "Mar 2026",
+    github: "https://github.com/anubhav100rao/crdts_docs",
+    color: "#06b6d4",
+  },
+  {
     name: "Linux FS Simulator",
     subtitle: "File System Engine",
     description:
