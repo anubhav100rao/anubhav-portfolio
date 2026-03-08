@@ -18,7 +18,7 @@ export default function Hero() {
 
   useEffect(() => {
     const current = roles[roleIndex];
-    let timeout: ReturnType<typeof setTimeout>;
+    let timeout: ReturnType<typeof setTimeout> | undefined;
 
     if (!deleting && displayed.length < current.length) {
       timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 60);
@@ -27,11 +27,17 @@ export default function Hero() {
     } else if (deleting && displayed.length > 0) {
       timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 30);
     } else if (deleting && displayed.length === 0) {
-      setDeleting(false);
-      setRoleIndex((i) => (i + 1) % roles.length);
+      timeout = setTimeout(() => {
+        setDeleting(false);
+        setRoleIndex((i) => (i + 1) % roles.length);
+      }, 120);
     }
 
-    return () => clearTimeout(timeout);
+    return () => {
+      if (timeout !== undefined) {
+        clearTimeout(timeout);
+      }
+    };
   }, [displayed, deleting, roleIndex]);
 
   return (
@@ -55,8 +61,6 @@ export default function Hero() {
       />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 py-32 text-center">
-
-
         <h1 className="text-5xl md:text-7xl font-bold text-zinc-100 tracking-tight mb-4">
           Anubhav Kumar{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">

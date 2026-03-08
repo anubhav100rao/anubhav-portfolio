@@ -69,6 +69,29 @@ export const experiences = [
 
 export const projects = [
   {
+    name: "SRE Agent Swarm",
+    subtitle: "Autonomous Incident Response Platform",
+    description:
+      "A production-grade, self-healing SRE control plane built as a 6-agent swarm (Observer, Diagnoser, Remediator, Safety, Orchestrator, Learner) over NATS JetStream. Monitors 10+ polyglot microservices, performs LLM-assisted root cause analysis with Gemini/OpenAI fallback chain, enforces safety gates with human-in-the-loop approvals via a React dashboard, executes YAML runbook-based remediation, and scores MTTD/MTTR with chaos engineering scenarios. The Learner agent uses RAG over ChromaDB to recommend runbooks from historical incidents.",
+    tags: [
+      "Python",
+      "Go",
+      "Node.js",
+      "NATS JetStream",
+      "FastAPI",
+      "React",
+      "Prometheus",
+      "Loki",
+      "Tempo",
+      "ChromaDB",
+      "Docker",
+    ],
+    category: "SRE / AI Agents",
+    period: "Mar 2026",
+    github: "https://github.com/anubhav100rao/sre-agent",
+    color: "#22c55e",
+  },
+  {
     name: "AnubhavOS",
     subtitle: "Educational Operating System",
     description:
@@ -87,7 +110,7 @@ export const projects = [
     tags: ["Python", "LangGraph", "FastAPI", "Qdrant", "LLM", "RAG"],
     category: "AI Systems",
     period: "Feb 2025 – Mar 2025",
-    github: "https://github.com/anubhav100rao",
+    github: "https://github.com/anubhav100rao/trade-agent",
     color: "#f59e0b",
   },
   {
@@ -98,7 +121,7 @@ export const projects = [
     tags: ["Go", "LSM Tree", "MVCC", "WAL", "ACID"],
     category: "Database System",
     period: "Dec 2024 – Jan 2025",
-    github: "https://github.com/anubhav100rao",
+    github: "https://github.com/anubhav100rao/minidb",
     color: "#3b82f6",
   },
   {
@@ -109,7 +132,7 @@ export const projects = [
     tags: ["Go", "React", "WebSockets", "Distributed Systems", "Raft"],
     category: "Distributed Systems",
     period: "Nov 2024 – Dec 2024",
-    github: "https://github.com/anubhav100rao",
+    github: "https://github.com/anubhav100rao/rafty",
     color: "#10b981",
   },
   {
@@ -131,7 +154,7 @@ export const projects = [
     tags: ["Java", "Inodes", "Bitmaps", "ext2/ext3", "Storage Engine"],
     category: "Storage Engine",
     period: "Jan 2025 – Feb 2025",
-    github: "https://github.com/anubhav100rao",
+    github: "https://github.com/anubhav100rao/linux_file_system",
     color: "#8b5cf6",
   },
 ];
@@ -139,11 +162,12 @@ export const projects = [
 export const skills = {
   Languages: ["Go", "Python", "Java", "TypeScript", "JavaScript", "SQL", "Bash"],
   "Backend & Systems": ["FastAPI", "Node.js", "RESTful APIs", "gRPC", "LSM Trees", "WAL", "MVCC"],
-  "AI & ML": ["LangGraph", "RAG", "LLMs", "Qdrant", "Prompt Engineering", "ETL Pipelines"],
+  "AI & ML": ["LangGraph", "RAG", "LLMs", "Qdrant", "ChromaDB", "Prompt Engineering", "ETL Pipelines"],
   "Data & Infrastructure": [
     "Redis",
     "PostgreSQL",
     "MySQL",
+    "NATS JetStream",
     "Apache Kafka",
     "Docker",
     "Kubernetes",
