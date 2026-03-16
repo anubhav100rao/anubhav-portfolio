@@ -5,6 +5,7 @@ import { extractToc } from "@/lib/toc";
 import TableOfContents from "@/components/TableOfContents";
 import ReadingProgress from "@/components/ReadingProgress";
 import BlogContent from "@/components/BlogContent";
+import ThemeToggle from "@/components/ThemeToggle";
 import type { Metadata } from "next";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -31,27 +32,30 @@ export default async function PostPage({ params }: Props) {
   const toc = extractToc(post.content);
 
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-white dark:bg-zinc-950">
       <ReadingProgress />
 
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/60">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md border-b border-zinc-200/60 dark:border-zinc-800/60">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link
             href="/blog"
-            className="flex items-center gap-2 text-zinc-400 hover:text-zinc-100 transition-colors text-sm"
+            className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors text-sm"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="m15 18-6-6 6-6" />
             </svg>
             All Posts
           </Link>
-          <Link
-            href="/"
-            className="text-zinc-100 font-semibold text-lg tracking-tight hover:text-blue-400 transition-colors"
-          >
-            AKR<span className="text-blue-500">.</span>
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/"
+              className="text-zinc-900 dark:text-zinc-100 font-semibold text-lg tracking-tight hover:text-blue-400 transition-colors"
+            >
+              AKR<span className="text-blue-500">.</span>
+            </Link>
+            <ThemeToggle />
+          </div>
         </div>
       </nav>
 
@@ -60,23 +64,23 @@ export default async function PostPage({ params }: Props) {
         {/* Main content */}
         <article className="flex-1 min-w-0">
           {/* Post header */}
-          <header className="mb-10 pb-8 border-b border-zinc-800/60">
+          <header className="mb-10 pb-8 border-b border-zinc-200/60 dark:border-zinc-800/60">
             <div className="flex flex-wrap gap-2 mb-5">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs font-mono text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded-md"
+                  className="text-xs font-mono text-blue-500 dark:text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded-md"
                 >
                   {tag}
                 </span>
               ))}
             </div>
 
-            <h1 className="text-3xl md:text-4xl font-bold text-zinc-100 leading-tight mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-100 leading-tight mb-4">
               {post.title}
             </h1>
 
-            <p className="text-zinc-400 text-base leading-relaxed mb-5">
+            <p className="text-zinc-500 dark:text-zinc-400 text-base leading-relaxed mb-5">
               {post.description}
             </p>
 
@@ -90,7 +94,7 @@ export default async function PostPage({ params }: Props) {
                 </svg>
                 <time>{formatDate(post.date)}</time>
               </div>
-              <span className="text-zinc-700">·</span>
+              <span className="text-zinc-300 dark:text-zinc-700">·</span>
               <div className="flex items-center gap-2">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="10" />
@@ -105,19 +109,19 @@ export default async function PostPage({ params }: Props) {
           <BlogContent html={post.content} />
 
           {/* Footer */}
-          <footer className="mt-16 pt-8 border-t border-zinc-800/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <footer className="mt-16 pt-8 border-t border-zinc-200/60 dark:border-zinc-800/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <Link
               href="/blog"
-              className="flex items-center gap-2 text-zinc-400 hover:text-zinc-100 transition-colors text-sm"
+              className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors text-sm"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="m15 18-6-6 6-6" />
               </svg>
               Back to all posts
             </Link>
-            <div className="text-xs text-zinc-600">
+            <div className="text-xs text-zinc-400 dark:text-zinc-600">
               Written by{" "}
-              <span className="text-zinc-400 font-medium">Anubhav Kumar Rao</span>
+              <span className="text-zinc-600 dark:text-zinc-400 font-medium">Anubhav Kumar Rao</span>
             </div>
           </footer>
         </article>

@@ -12,10 +12,10 @@ const categoryColors: Record<string, string> = {
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6 bg-zinc-900/30">
+    <section id="skills" className="py-24 px-6 bg-zinc-50/50 dark:bg-zinc-900/30">
       <div className="max-w-5xl mx-auto">
         <SectionLabel>Skills</SectionLabel>
-        <h2 className="text-3xl md:text-4xl font-bold text-zinc-100 mt-3 mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mt-3 mb-12">
           Technologies & Tools
         </h2>
 
@@ -25,14 +25,14 @@ export default function Skills() {
             return (
               <FadeIn key={category} delay={i * 0.06}>
               <div
-                className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-zinc-700 transition-colors"
+                className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
               >
                 <div className="flex items-center gap-2.5 mb-4">
                   <div
                     className="w-2 h-2 rounded-full"
                     style={{ backgroundColor: color }}
                   />
-                  <h3 className="text-zinc-200 font-semibold text-sm">{category}</h3>
+                  <h3 className="text-zinc-800 dark:text-zinc-200 font-semibold text-sm">{category}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {items.map((skill) => (
@@ -63,7 +63,7 @@ function SectionLabel({ children }: { children: string }) {
   return (
     <div className="flex items-center gap-3">
       <span className="text-blue-500 text-sm font-mono">{"// "}</span>
-      <span className="text-blue-400 text-sm font-semibold uppercase tracking-widest">
+      <span className="text-blue-500 dark:text-blue-400 text-sm font-semibold uppercase tracking-widest">
         {children}
       </span>
     </div>

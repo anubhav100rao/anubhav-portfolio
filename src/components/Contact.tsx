@@ -36,10 +36,10 @@ export default function Contact() {
     <section id="contact" className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <SectionLabel>Contact</SectionLabel>
-        <h2 className="text-3xl md:text-4xl font-bold text-zinc-100 mt-3 mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mt-3 mb-4">
           Let&apos;s Connect
         </h2>
-        <p className="text-zinc-400 text-sm mb-12 max-w-lg">
+        <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-12 max-w-lg">
           I&apos;m always open to interesting conversations — whether it&apos;s a new role, a project
           idea, or just saying hi.
         </p>
@@ -51,7 +51,7 @@ export default function Contact() {
               href={link.href}
               target={link.href.startsWith("mailto") ? undefined : "_blank"}
               rel="noopener noreferrer"
-              className="group bg-zinc-900 border border-zinc-800 rounded-2xl p-5 hover:border-zinc-700 transition-all duration-200 hover:shadow-lg hover:shadow-black/30"
+              className="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-5 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-200 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-black/30"
             >
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
@@ -59,18 +59,18 @@ export default function Contact() {
               >
                 {link.icon}
               </div>
-              <p className="text-zinc-100 font-semibold text-sm mb-1">{link.label}</p>
+              <p className="text-zinc-900 dark:text-zinc-100 font-semibold text-sm mb-1">{link.label}</p>
               <p className="text-zinc-500 text-xs leading-relaxed">{link.description}</p>
             </a>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-zinc-800 rounded-2xl p-8 text-center">
-          <h3 className="text-xl font-bold text-zinc-100 mb-2">
+        <div className="bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-8 text-center">
+          <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">
             Want to work together?
           </h3>
-          <p className="text-zinc-400 text-sm mb-6">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-6">
             I&apos;m currently at Coinbase but always open to hearing about exciting opportunities.
           </p>
           <a
@@ -90,7 +90,7 @@ function SectionLabel({ children }: { children: string }) {
   return (
     <div className="flex items-center gap-3">
       <span className="text-blue-500 text-sm font-mono">{"// "}</span>
-      <span className="text-blue-400 text-sm font-semibold uppercase tracking-widest">
+      <span className="text-blue-500 dark:text-blue-400 text-sm font-semibold uppercase tracking-widest">
         {children}
       </span>
     </div>

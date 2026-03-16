@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -55,14 +56,14 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/60"
+          ? "bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md border-b border-zinc-200/60 dark:border-zinc-800/60"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <a
           href="#hero"
-          className="text-zinc-100 font-semibold text-lg tracking-tight hover:text-blue-400 transition-colors"
+          className="text-zinc-900 dark:text-zinc-100 font-semibold text-lg tracking-tight hover:text-blue-400 transition-colors"
         >
           AKR<span className="text-blue-500">.</span>
         </a>
@@ -74,7 +75,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors"
+                className="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
               >
                 {link.label}
               </Link>
@@ -84,8 +85,8 @@ export default function Navbar() {
                 href={link.href}
                 className={`text-sm transition-colors relative ${
                   isActive(link.href)
-                    ? "text-zinc-100"
-                    : "text-zinc-400 hover:text-zinc-100"
+                    ? "text-zinc-900 dark:text-zinc-100"
+                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
                 }`}
               >
                 {link.label}
@@ -103,11 +104,14 @@ export default function Navbar() {
           >
             Resume
           </a>
+          <ThemeToggle />
         </div>
 
         {/* Mobile hamburger */}
-        <button
-          className="md:hidden text-zinc-400 hover:text-zinc-100 transition-colors"
+        <div className="flex md:hidden items-center gap-2">
+          <ThemeToggle />
+          <button
+          className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -117,17 +121,18 @@ export default function Navbar() {
             <span className={`h-0.5 bg-current transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
           </div>
         </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-zinc-900/95 backdrop-blur-md border-b border-zinc-800 px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 px-6 py-4 flex flex-col gap-4">
           {navLinks.map((link) =>
             link.href.startsWith("/") ? (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-zinc-300 hover:text-zinc-100 transition-colors text-sm"
+                className="text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors text-sm"
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}
@@ -137,7 +142,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`text-sm transition-colors ${
-                  isActive(link.href) ? "text-blue-400 font-medium" : "text-zinc-300 hover:text-zinc-100"
+                  isActive(link.href) ? "text-blue-500 dark:text-blue-400 font-medium" : "text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100"
                 }`}
                 onClick={() => setMenuOpen(false)}
               >

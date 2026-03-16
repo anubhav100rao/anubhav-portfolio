@@ -46,22 +46,22 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Subtle gradient background */}
-      <div className="absolute inset-0 bg-zinc-950">
+      <div className="absolute inset-0 bg-white dark:bg-zinc-950">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(59,130,246,0.08),transparent_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,rgba(139,92,246,0.05),transparent_50%)]" />
       </div>
 
       {/* Grid pattern */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.03]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)`,
           backgroundSize: "64px 64px",
         }}
       />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 py-32 text-center">
-        <h1 className="text-5xl md:text-7xl font-bold text-zinc-100 tracking-tight mb-4">
+        <h1 className="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-4">
           Anubhav Kumar{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
             Rao
@@ -70,13 +70,13 @@ export default function Hero() {
 
         {/* Typewriter */}
         <div className="h-10 flex items-center justify-center mb-6">
-          <p className="text-lg md:text-2xl text-zinc-400 font-mono">
+          <p className="text-lg md:text-2xl text-zinc-500 dark:text-zinc-400 font-mono">
             {displayed}
             <span className="animate-pulse text-blue-400">|</span>
           </p>
         </div>
 
-        <p className="max-w-2xl mx-auto text-zinc-400 text-base md:text-lg leading-relaxed mb-10">
+        <p className="max-w-2xl mx-auto text-zinc-500 dark:text-zinc-400 text-base md:text-lg leading-relaxed mb-10">
           {personalInfo.tagline}
         </p>
 
@@ -91,13 +91,13 @@ export default function Hero() {
             href={personalInfo.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-xl border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-zinc-100 font-medium transition-all hover:scale-105"
+            className="px-6 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 font-medium transition-all hover:scale-105"
           >
             Download Resume
           </a>
           <a
             href="#contact"
-            className="px-6 py-3 rounded-xl border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-zinc-100 font-medium transition-all hover:scale-105"
+            className="px-6 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 font-medium transition-all hover:scale-105"
           >
             Contact Me
           </a>
@@ -109,25 +109,25 @@ export default function Hero() {
             href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-500 hover:text-zinc-200 transition-colors text-sm flex items-center gap-2"
+            className="text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors text-sm flex items-center gap-2"
           >
             <GithubIcon />
             GitHub
           </a>
-          <span className="text-zinc-700">·</span>
+          <span className="text-zinc-300 dark:text-zinc-700">·</span>
           <a
             href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-500 hover:text-zinc-200 transition-colors text-sm flex items-center gap-2"
+            className="text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors text-sm flex items-center gap-2"
           >
             <LinkedInIcon />
             LinkedIn
           </a>
-          <span className="text-zinc-700">·</span>
+          <span className="text-zinc-300 dark:text-zinc-700">·</span>
           <a
             href={`mailto:${personalInfo.email}`}
-            className="text-zinc-500 hover:text-zinc-200 transition-colors text-sm"
+            className="text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors text-sm"
           >
             {personalInfo.email}
           </a>
@@ -135,7 +135,7 @@ export default function Hero() {
 
         {/* Scroll cue */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-px h-12 bg-gradient-to-b from-zinc-700 to-transparent mx-auto" />
+          <div className="w-px h-12 bg-gradient-to-b from-zinc-300 dark:from-zinc-700 to-transparent mx-auto" />
         </div>
       </div>
     </section>

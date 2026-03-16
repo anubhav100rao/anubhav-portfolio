@@ -47,8 +47,8 @@ export default function TableOfContents({ entries }: { entries: TocEntry[] }) {
                 href={`#${entry.id}`}
                 className={`block text-xs leading-snug transition-colors duration-150 truncate ${
                   isActive
-                    ? "text-blue-400 font-medium"
-                    : "text-zinc-500 hover:text-zinc-300"
+                    ? "text-blue-500 dark:text-blue-400 font-medium"
+                    : "text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -58,7 +58,7 @@ export default function TableOfContents({ entries }: { entries: TocEntry[] }) {
                 }}
               >
                 {isActive && (
-                  <span className="inline-block w-1 h-1 rounded-full bg-blue-400 mr-2 align-middle" />
+                  <span className="inline-block w-1 h-1 rounded-full bg-blue-500 dark:bg-blue-400 mr-2 align-middle" />
                 )}
                 {entry.text}
               </a>

@@ -6,10 +6,10 @@ export default function Projects() {
     <section id="projects" className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <SectionLabel>Projects</SectionLabel>
-        <h2 className="text-3xl md:text-4xl font-bold text-zinc-100 mt-3 mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mt-3 mb-4">
           Things I&apos;ve Built
         </h2>
-        <p className="text-zinc-400 text-sm mb-12 max-w-xl">
+        <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-12 max-w-xl">
           Personal projects I built to go deep on systems, databases, distributed algorithms, and AI.
         </p>
 
@@ -29,7 +29,7 @@ type Project = (typeof projects)[number];
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="group bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-zinc-700 transition-all duration-200 hover:shadow-xl hover:shadow-black/30 flex flex-col">
+    <div className="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-200 hover:shadow-xl hover:shadow-zinc-200/50 dark:hover:shadow-black/30 flex flex-col">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -44,9 +44,9 @@ function ProjectCard({ project }: { project: Project }) {
             >
               {project.category}
             </span>
-            <span className="text-xs text-zinc-600">{project.period}</span>
+            <span className="text-xs text-zinc-400 dark:text-zinc-600">{project.period}</span>
           </div>
-          <h3 className="text-zinc-100 font-semibold text-lg leading-tight">{project.name}</h3>
+          <h3 className="text-zinc-900 dark:text-zinc-100 font-semibold text-lg leading-tight">{project.name}</h3>
           <p className="text-zinc-500 text-xs mt-0.5">{project.subtitle}</p>
         </div>
 
@@ -54,7 +54,7 @@ function ProjectCard({ project }: { project: Project }) {
           href={project.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-zinc-600 hover:text-zinc-300 transition-colors flex-shrink-0 ml-2 mt-1"
+          className="text-zinc-400 dark:text-zinc-600 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors flex-shrink-0 ml-2 mt-1"
           aria-label={`GitHub link for ${project.name}`}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -64,14 +64,14 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
 
       {/* Description */}
-      <p className="text-zinc-400 text-sm leading-relaxed flex-1 mb-5">{project.description}</p>
+      <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed flex-1 mb-5">{project.description}</p>
 
       {/* Tags */}
       <div className="flex flex-wrap gap-2">
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="text-xs font-mono text-zinc-400 bg-zinc-800 border border-zinc-700 px-2.5 py-1 rounded-md"
+            className="text-xs font-mono text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-2.5 py-1 rounded-md"
           >
             {tag}
           </span>
@@ -85,7 +85,7 @@ function SectionLabel({ children }: { children: string }) {
   return (
     <div className="flex items-center gap-3">
       <span className="text-blue-500 text-sm font-mono">{"// "}</span>
-      <span className="text-blue-400 text-sm font-semibold uppercase tracking-widest">
+      <span className="text-blue-500 dark:text-blue-400 text-sm font-semibold uppercase tracking-widest">
         {children}
       </span>
     </div>
