@@ -6,7 +6,7 @@ description: "How I built a SQL-compliant transactional database engine in Go wi
 readTime: "12 min"
 ---
 
-**GitHub Repository:** [View Source Code](https://github.com/anubhav100rao)
+**GitHub Repository:** [View Source Code](https://github.com/anubhav100rao/mini_db)
 
 Building a database from scratch is one of the best ways to deeply understand how systems work. This post walks through the key design decisions and implementation details of MiniDB — a transactional database engine I built in Go over two months.
 
@@ -220,4 +220,4 @@ I used **leveled compaction** (same as LevelDB/RocksDB) which bounds read amplif
 3. **MVCC complexity is worth it** — the throughput gains from lock-free reads are enormous at scale
 4. **WAL ordering matters** — fsync frequency is the biggest knob for durability vs. write throughput
 
-The full source is on [GitHub](https://github.com/anubhav100rao). Feel free to dig into the code or open issues.
+The full source is on [GitHub](https://github.com/anubhav100rao/mini_db). Feel free to dig into the code or open issues.

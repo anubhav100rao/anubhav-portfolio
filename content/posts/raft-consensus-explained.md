@@ -6,7 +6,7 @@ description: "Raft is beautiful once you visualize it. I built Rafty — a real-
 readTime: "10 min"
 ---
 
-**GitHub Repository:** [View Source Code](https://github.com/anubhav100rao)
+**GitHub Repository:** [View Source Code](https://github.com/anubhav100rao/rafty)
 
 Raft is one of those algorithms that looks simple on paper but has surprising depth. After reading the original paper ("In Search of an Understandable Consensus Algorithm") three times, I still felt like I was missing something. So I built **Rafty** — a real-time visualizer of a 5-node Raft cluster — and everything clicked.
 
@@ -244,7 +244,7 @@ After building this, I understand why Diego Ongaro called it "the understandable
 3. **Term numbers as logical clocks**: stale leaders immediately detect they've been superseded
 4. **Log matching property**: if two logs have the same index and term, all preceding entries are identical — makes correctness proofs tractable
 
-The complete source for Rafty (Go backend + React frontend) is on [GitHub](https://github.com/anubhav100rao). You can inject network partitions, kill nodes, and watch the cluster recover in real time.
+The complete source for Rafty (Go backend + React frontend) is on [GitHub](https://github.com/anubhav100rao/rafty). You can inject network partitions, kill nodes, and watch the cluster recover in real time.
 
 ## Further Reading
 

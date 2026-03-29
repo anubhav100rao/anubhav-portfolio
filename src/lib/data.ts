@@ -110,7 +110,7 @@ export const projects = [
     tags: ["Python", "LangGraph", "FastAPI", "Qdrant", "LLM", "RAG"],
     category: "AI Systems",
     period: "Feb 2025 – Mar 2025",
-    github: "https://github.com/anubhav100rao/trade-agent",
+    github: "https://github.com/anubhav100rao/trade_today",
     color: "#f59e0b",
   },
   {
@@ -121,7 +121,7 @@ export const projects = [
     tags: ["Go", "LSM Tree", "MVCC", "WAL", "ACID"],
     category: "Database System",
     period: "Dec 2024 – Jan 2025",
-    github: "https://github.com/anubhav100rao/minidb",
+    github: "https://github.com/anubhav100rao/mini_db",
     color: "#3b82f6",
   },
   {
