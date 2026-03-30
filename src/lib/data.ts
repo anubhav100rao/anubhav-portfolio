@@ -92,6 +92,17 @@ export const projects = [
     color: "#22c55e",
   },
   {
+    name: "HNSW Simulator",
+    subtitle: "Approximate Nearest Neighbor Visualizer",
+    description:
+      "An interactive, browser-based visualizer for the Hierarchical Navigable Small World (HNSW) algorithm. Simulates multi-layer graph construction, greedy top-down nearest-neighbor search, random-level assignment, and degree-pruned edge linking, with live layer isolation, operation logs, and graph statistics to make vector search internals intuitive.",
+    tags: ["React", "Vite", "JavaScript", "HNSW", "ANN Search", "SVG"],
+    category: "Algorithms / Visualization",
+    period: "Mar 2026",
+    github: "https://github.com/anubhav100rao/HNSW-simulation",
+    color: "#14b8a6",
+  },
+  {
     name: "AnubhavOS",
     subtitle: "Educational Operating System",
     description:
