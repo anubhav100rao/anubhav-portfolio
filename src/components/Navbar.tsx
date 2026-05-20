@@ -6,6 +6,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "About", href: "#about" },
+  { label: "CodeTraces", href: "#codetraces" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
@@ -14,7 +15,7 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-const SECTION_IDS = ["hero", "about", "experience", "projects", "skills", "blog", "contact"];
+const SECTION_IDS = ["hero", "about", "codetraces", "experience", "projects", "skills", "blog", "contact"];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -54,14 +55,14 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md border-b border-zinc-200/60 dark:border-zinc-800/60"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 md:top-4 px-4 w-full transition-all duration-300">
+      <div
+        className={`max-w-5xl mx-auto rounded-2xl md:rounded-full transition-all duration-300 flex items-center justify-between ${
+          scrolled
+            ? "glass-panel py-2 px-6 shadow-xl shadow-zinc-150/10 dark:shadow-black/30"
+            : "bg-transparent py-4 px-6 border border-transparent"
+        }`}
+      >
         <a
           href="#hero"
           className="text-zinc-900 dark:text-zinc-100 font-semibold text-lg tracking-tight hover:text-blue-400 transition-colors"
@@ -76,7 +77,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                className="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
               >
                 {link.label}
               </Link>
@@ -84,7 +85,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`text-sm transition-colors relative ${
+                className={`text-sm font-medium transition-colors relative py-1 ${
                   isActive(link.href)
                     ? "text-zinc-900 dark:text-zinc-100"
                     : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
@@ -92,7 +93,7 @@ export default function Navbar() {
               >
                 {link.label}
                 {isActive(link.href) && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-blue-500 rounded-full" />
+                  <span className="absolute -bottom-1 left-1 right-1 h-[2px] bg-blue-500 rounded-full" />
                 )}
               </a>
             )
@@ -101,7 +102,7 @@ export default function Navbar() {
             href="https://drive.google.com/file/d/1nhTYvt1FnTJ6nMsw7eqvgBLDrxiC7Ydy/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors"
+            className="text-sm px-4.5 py-2 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-medium shadow-md shadow-blue-500/20 hover:shadow-blue-500/30 transition-all hover:scale-105"
           >
             Resume
           </a>
@@ -112,28 +113,28 @@ export default function Navbar() {
         <div className="flex md:hidden items-center gap-2">
           <ThemeToggle />
           <button
-          className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <div className="w-5 flex flex-col gap-1">
-            <span className={`h-0.5 bg-current transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
-            <span className={`h-0.5 bg-current transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`} />
-            <span className={`h-0.5 bg-current transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
-          </div>
-        </button>
+            className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors p-1"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <div className="w-5 flex flex-col gap-1">
+              <span className={`h-0.5 bg-current transition-all duration-205 ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
+              <span className={`h-0.5 bg-current transition-all duration-205 ${menuOpen ? "opacity-0" : ""}`} />
+              <span className={`h-0.5 bg-current transition-all duration-205 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
+            </div>
+          </button>
         </div>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden mt-2 rounded-2xl glass-panel px-6 py-4 flex flex-col gap-4 shadow-xl border border-zinc-200/50 dark:border-zinc-800/40">
           {navLinks.map((link) =>
             link.href.startsWith("/") ? (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors text-sm"
+                className="text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors text-sm font-semibold"
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}
@@ -142,8 +143,8 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`text-sm transition-colors ${
-                  isActive(link.href) ? "text-blue-500 dark:text-blue-400 font-medium" : "text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100"
+                className={`text-sm font-semibold transition-colors ${
+                  isActive(link.href) ? "text-blue-500 dark:text-blue-400" : "text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100"
                 }`}
                 onClick={() => setMenuOpen(false)}
               >
@@ -155,7 +156,7 @@ export default function Navbar() {
             href="https://drive.google.com/file/d/1nhTYvt1FnTJ6nMsw7eqvgBLDrxiC7Ydy/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm px-4 py-2 rounded-lg bg-blue-600 text-white font-medium text-center"
+            className="text-sm py-2 px-4 rounded-xl bg-blue-600 text-white font-medium text-center shadow-md shadow-blue-500/20"
             onClick={() => setMenuOpen(false)}
           >
             Resume

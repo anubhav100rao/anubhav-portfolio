@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import CodeTracesShowcase from "@/components/CodeTracesShowcase";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
@@ -14,6 +15,7 @@ export default function Home() {
     <main className="min-h-screen bg-white dark:bg-zinc-950">
       <Navbar />
       <Hero />
+      <CodeTracesShowcase />
       <About />
       <Experience />
       <Projects />

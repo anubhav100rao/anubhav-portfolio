@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { personalInfo } from "@/lib/data";
 
 const roles = [
+  "Founder @ CodeTraces.dev",
   "Software Engineer @ Coinbase",
   "Distributed Systems Engineer",
   "LLM Platform Engineer",
@@ -45,35 +46,49 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Subtle gradient background */}
+      {/* Custom mesh gradient background */}
       <div className="absolute inset-0 bg-white dark:bg-zinc-950">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(59,130,246,0.08),transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,rgba(139,92,246,0.05),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(139,92,246,0.05),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.04),transparent_50%)]" />
       </div>
 
-      {/* Grid pattern */}
+      {/* Modern subtle grid pattern */}
       <div
-        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02]"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.15) 1px, transparent 1px)`,
           backgroundSize: "64px 64px",
         }}
       />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 py-32 text-center">
-        <h1 className="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-4">
+        {/* CodeTraces.dev Highlight Badge */}
+        <a
+          href="#codetraces"
+          className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-blue-50/80 dark:bg-blue-950/20 border border-blue-200/40 dark:border-blue-900/30 text-blue-600 dark:text-blue-400 font-mono text-[11px] mb-8 hover:scale-105 transition-all duration-300 shadow-sm shadow-blue-100/50 dark:shadow-none"
+        >
+          <span className="flex h-2 w-2 relative">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+          </span>
+          Currently Building CodeTraces.dev — Interactive AI Visualizer Startup →
+        </a>
+
+        <h1 className="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-6">
           Anubhav Kumar{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">
             Rao
           </span>
         </h1>
 
-        {/* Typewriter */}
-        <div className="h-10 flex items-center justify-center mb-6">
-          <p className="text-lg md:text-2xl text-zinc-500 dark:text-zinc-400 font-mono">
-            {displayed}
-            <span className="animate-pulse text-blue-400">|</span>
-          </p>
+        {/* Refined Terminal Typewriter Command Block */}
+        <div className="flex items-center justify-center mb-8 select-none">
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/45 border border-zinc-200 dark:border-zinc-800/80 font-mono text-sm md:text-base text-zinc-600 dark:text-zinc-350 shadow-sm shadow-zinc-100/30 dark:shadow-none">
+            <span className="text-emerald-500 font-extrabold select-none animate-pulse">❯</span>
+            <span>{displayed}</span>
+            <span className="animate-pulse text-blue-500 dark:text-blue-400 font-black">|</span>
+          </div>
         </div>
 
         <p className="max-w-2xl mx-auto text-zinc-500 dark:text-zinc-400 text-base md:text-lg leading-relaxed mb-10">
@@ -82,8 +97,14 @@ export default function Hero() {
 
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a
+            href="#codetraces"
+            className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-650 hover:from-blue-550 hover:to-indigo-600 text-white font-semibold text-sm transition-all hover:scale-105 shadow-md shadow-blue-500/20"
+          >
+            Explore CodeTraces.dev
+          </a>
+          <a
             href="#experience"
-            className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium transition-all hover:scale-105"
+            className="px-6 py-3 rounded-full bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold text-sm transition-all hover:scale-105 shadow-sm"
           >
             View My Work
           </a>
@@ -91,13 +112,13 @@ export default function Hero() {
             href={personalInfo.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 font-medium transition-all hover:scale-105"
+            className="px-6 py-3 rounded-full bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold text-sm transition-all hover:scale-105 shadow-sm"
           >
             Download Resume
           </a>
           <a
             href="#contact"
-            className="px-6 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 font-medium transition-all hover:scale-105"
+            className="px-6 py-3 rounded-full bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold text-sm transition-all hover:scale-105 shadow-sm"
           >
             Contact Me
           </a>
