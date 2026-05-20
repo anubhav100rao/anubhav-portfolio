@@ -57,19 +57,12 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 md:top-4 px-4 w-full transition-all duration-300">
       <div
-        className={`max-w-5xl mx-auto rounded-2xl md:rounded-full transition-all duration-300 flex items-center justify-between ${
+        className={`max-w-5xl mx-auto rounded-2xl md:rounded-full transition-all duration-300 flex items-center justify-end md:justify-center ${
           scrolled
             ? "glass-panel py-2 px-6 shadow-xl shadow-zinc-150/10 dark:shadow-black/30"
             : "bg-transparent py-4 px-6 border border-transparent"
         }`}
       >
-        <a
-          href="#hero"
-          className="text-zinc-900 dark:text-zinc-100 font-semibold text-lg tracking-tight hover:text-blue-400 transition-colors"
-        >
-          AKR<span className="text-blue-500">.</span>
-        </a>
-
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) =>
