@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { skills } from "@/lib/data";
 import FadeIn from "@/components/FadeIn";
+import TechMarquee from "@/components/TechMarquee";
+import SectionHeader from "@/components/SectionHeader";
 
 const categoryColors: Record<string, string> = {
   Languages: "#3b82f6",
@@ -78,15 +80,17 @@ export default function Skills() {
       <div className="max-w-5xl mx-auto relative z-10">
         
         {/* Header */}
-        <div className="mb-14">
-          <SectionLabel>Skills</SectionLabel>
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mt-3 mb-2">
-            Technologies & Tools
-          </h2>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-xl">
-            My tech stack across languages, deep systems engineering, AI systems, data pipelines, infrastructure, and core CS.
-          </p>
-        </div>
+        <SectionHeader
+          label="Skills"
+          title="Technologies &"
+          accent="Tools"
+          subtitle="My tech stack across languages, deep systems engineering, AI systems, data pipelines, infrastructure, and core CS."
+        />
+
+        {/* Scrolling tech marquee */}
+        <FadeIn className="mb-14">
+          <TechMarquee />
+        </FadeIn>
 
         {/* Dynamic Skill Board Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -185,17 +189,6 @@ function SkillBadge({ skill, baseColor }: { skill: string; baseColor: string }) 
     >
       {skill}
     </span>
-  );
-}
-
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-blue-500 text-sm font-mono">{"// "}</span>
-      <span className="text-blue-500 dark:text-blue-400 text-sm font-semibold uppercase tracking-widest">
-        {children}
-      </span>
-    </div>
   );
 }
 

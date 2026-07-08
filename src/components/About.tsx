@@ -1,16 +1,13 @@
 import { education } from "@/lib/data";
 import FadeIn from "@/components/FadeIn";
+import CountUp from "@/components/CountUp";
+import SectionHeader from "@/components/SectionHeader";
 
 export default function About() {
   return (
     <section id="about" className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
-        <FadeIn direction="left"><SectionLabel>About</SectionLabel></FadeIn>
-        <FadeIn delay={0.05}>
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mt-3 mb-10">
-            Who I Am
-          </h2>
-        </FadeIn>
+        <SectionHeader label="About" title="Who I" accent="Am" />
 
         <div className="grid md:grid-cols-5 gap-12">
           {/* Bio */}
@@ -77,16 +74,22 @@ export default function About() {
             {/* Quick facts */}
             <div className="mt-6 grid grid-cols-2 gap-3">
               {[
-                { label: "Companies", value: "4+" },
-                { label: "Projects", value: "10+" },
-                { label: "Data Handled", value: "12TB+" },
+                { label: "Companies", count: 4, suffix: "+" },
+                { label: "Projects", count: 10, suffix: "+" },
+                { label: "Data Handled", count: 12, suffix: "TB+" },
                 { label: "LeetCode", value: "Contest Tester" },
               ].map((stat) => (
                 <div
                   key={stat.label}
-                  className="bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-3 text-center"
+                  className="bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-3 text-center hover:border-blue-300 dark:hover:border-blue-800 hover:-translate-y-0.5 transition-all duration-300"
                 >
-                  <p className="text-blue-500 dark:text-blue-400 font-bold text-lg">{stat.value}</p>
+                  <p className="text-blue-500 dark:text-blue-400 font-bold text-lg">
+                    {stat.count !== undefined ? (
+                      <CountUp to={stat.count} suffix={stat.suffix} />
+                    ) : (
+                      stat.value
+                    )}
+                  </p>
                   <p className="text-zinc-500 text-xs mt-0.5">{stat.label}</p>
                 </div>
               ))}
@@ -96,16 +99,5 @@ export default function About() {
         </div>
       </div>
     </section>
-  );
-}
-
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-blue-500 text-sm font-mono">{"// "}</span>
-      <span className="text-blue-500 dark:text-blue-400 text-sm font-semibold uppercase tracking-widest">
-        {children}
-      </span>
-    </div>
   );
 }

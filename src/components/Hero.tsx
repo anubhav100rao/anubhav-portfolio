@@ -1,6 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { MouseEvent } from "react";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 import { personalInfo } from "@/lib/data";
 
 const roles = [
@@ -12,10 +19,50 @@ const roles = [
   "Open Source Systems Contributor",
 ];
 
+const glyphs = [
+  { char: "{ }", left: "8%", top: "22%", size: "text-lg", duration: 7, delay: 0 },
+  { char: "</>", left: "88%", top: "18%", size: "text-xl", duration: 9, delay: 1.2 },
+  { char: "λ", left: "14%", top: "68%", size: "text-2xl", duration: 8, delay: 0.6 },
+  { char: "async", left: "82%", top: "62%", size: "text-sm", duration: 10, delay: 2 },
+  { char: "raft()", left: "6%", top: "44%", size: "text-sm", duration: 9, delay: 1.6 },
+  { char: "LSM", left: "92%", top: "40%", size: "text-base", duration: 8, delay: 0.3 },
+  { char: "0x2A", left: "20%", top: "12%", size: "text-xs", duration: 11, delay: 2.4 },
+  { char: "()=>", left: "76%", top: "82%", size: "text-base", duration: 7.5, delay: 0.9 },
+];
+
+const container = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
+  },
+};
+
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [deleting, setDeleting] = useState(false);
+
+  // Mouse-follow spotlight
+  const mouseX = useMotionValue(-1000);
+  const mouseY = useMotionValue(-1000);
+  const spotX = useSpring(mouseX, { stiffness: 60, damping: 20 });
+  const spotY = useSpring(mouseY, { stiffness: 60, damping: 20 });
+  const spotlight = useMotionTemplate`radial-gradient(550px circle at ${spotX}px ${spotY}px, rgba(59,130,246,0.09), transparent 70%)`;
+
+  const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  };
 
   useEffect(() => {
     const current = roles[roleIndex];
@@ -44,61 +91,110 @@ export default function Hero() {
   return (
     <section
       id="hero"
+      onMouseMove={handleMouseMove}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Custom mesh gradient background */}
-      <div className="absolute inset-0 bg-white dark:bg-zinc-950">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08),transparent_55%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(139,92,246,0.05),transparent_40%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.04),transparent_50%)]" />
-      </div>
+      {/* Base background — semi-transparent so the page ambient layer bleeds through */}
+      <div className="absolute inset-0 bg-white/70 dark:bg-zinc-950/70" />
 
-      {/* Modern subtle grid pattern */}
+      {/* Floating gradient orbs */}
       <div
-        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02]"
+        className="animate-blob absolute -top-24 left-[12%] w-[420px] h-[420px] rounded-full bg-blue-500/10 dark:bg-blue-500/[0.13] blur-3xl pointer-events-none"
+        style={{ animationDuration: "16s" }}
+      />
+      <div
+        className="animate-blob absolute top-[35%] -right-24 w-[380px] h-[380px] rounded-full bg-violet-500/10 dark:bg-violet-500/[0.11] blur-3xl pointer-events-none"
+        style={{ animationDuration: "21s", animationDelay: "-6s" }}
+      />
+      <div
+        className="animate-blob absolute -bottom-32 left-[30%] w-[440px] h-[440px] rounded-full bg-cyan-500/[0.08] dark:bg-cyan-500/[0.09] blur-3xl pointer-events-none"
+        style={{ animationDuration: "19s", animationDelay: "-11s" }}
+      />
+
+      {/* Slowly panning grid */}
+      <div
+        className="animate-grid-pan absolute inset-0 opacity-[0.04] dark:opacity-[0.03]"
         style={{
           backgroundImage: `linear-gradient(rgba(0,0,0,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.15) 1px, transparent 1px)`,
           backgroundSize: "64px 64px",
+          animationDuration: "14s",
         }}
       />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 py-32 text-center">
-        {/* CodeTraces.dev Highlight Badge */}
-        <a
-          href="#codetraces"
-          className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-blue-50/80 dark:bg-blue-950/20 border border-blue-200/40 dark:border-blue-900/30 text-blue-600 dark:text-blue-400 font-mono text-[11px] mb-8 hover:scale-105 transition-all duration-300 shadow-sm shadow-blue-100/50 dark:shadow-none"
-        >
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-          </span>
-          Currently Building CodeTraces.dev — Interactive AI Visualizer Startup →
-        </a>
+      {/* Mouse-follow spotlight */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: spotlight }}
+      />
 
-        <h1 className="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-6">
+      {/* Drifting code glyphs */}
+      {glyphs.map((g) => (
+        <motion.span
+          key={g.char}
+          className={`absolute font-mono ${g.size} text-zinc-400/40 dark:text-zinc-600/40 pointer-events-none select-none hidden md:block`}
+          style={{ left: g.left, top: g.top }}
+          animate={{ y: [0, -22, 0], rotate: [0, 4, -3, 0], opacity: [0.35, 0.7, 0.35] }}
+          transition={{
+            duration: g.duration,
+            delay: g.delay,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          {g.char}
+        </motion.span>
+      ))}
+
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="relative z-10 max-w-5xl mx-auto px-6 py-32 text-center"
+      >
+        {/* CodeTraces.dev Highlight Badge */}
+        <motion.div variants={item}>
+          <a
+            href="#codetraces"
+            className="inline-flex items-center gap-2.5 px-4.5 py-1.5 rounded-full bg-blue-50/80 dark:bg-blue-950/20 border border-blue-200/40 dark:border-blue-900/30 text-blue-600 dark:text-blue-400 font-mono text-[11px] mb-8 hover:scale-105 transition-all duration-300 shadow-sm shadow-blue-100/50 dark:shadow-none"
+          >
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            </span>
+            Currently Building CodeTraces.dev — Interactive AI Visualizer →
+          </a>
+        </motion.div>
+
+        <motion.h1
+          variants={item}
+          className="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-6"
+        >
           Anubhav Kumar{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">
+          <span className="animate-gradient-x text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500">
             Rao
           </span>
-        </h1>
+        </motion.h1>
 
         {/* Refined Terminal Typewriter Command Block */}
-        <div className="flex items-center justify-center mb-8 select-none">
+        <motion.div variants={item} className="flex items-center justify-center mb-8 select-none">
           <div className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-zinc-100/80 dark:bg-zinc-900/45 border border-zinc-200 dark:border-zinc-800/80 font-mono text-sm md:text-base text-zinc-600 dark:text-zinc-350 shadow-sm shadow-zinc-100/30 dark:shadow-none">
             <span className="text-emerald-500 font-extrabold select-none animate-pulse">❯</span>
             <span>{displayed}</span>
             <span className="animate-pulse text-blue-500 dark:text-blue-400 font-black">|</span>
           </div>
-        </div>
+        </motion.div>
 
-        <p className="max-w-2xl mx-auto text-zinc-500 dark:text-zinc-400 text-base md:text-lg leading-relaxed mb-10">
+        <motion.p
+          variants={item}
+          className="max-w-2xl mx-auto text-zinc-500 dark:text-zinc-400 text-base md:text-lg leading-relaxed mb-10"
+        >
           {personalInfo.tagline}
-        </p>
+        </motion.p>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <motion.div variants={item} className="flex flex-wrap items-center justify-center gap-4">
           <a
             href="#codetraces"
-            className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-650 hover:from-blue-550 hover:to-indigo-600 text-white font-semibold text-sm transition-all hover:scale-105 shadow-md shadow-blue-500/20"
+            className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all hover:scale-105 shadow-md shadow-blue-500/20"
           >
             Explore CodeTraces.dev
           </a>
@@ -122,10 +218,10 @@ export default function Hero() {
           >
             Contact Me
           </a>
-        </div>
+        </motion.div>
 
         {/* Social links */}
-        <div className="mt-12 flex items-center justify-center gap-6">
+        <motion.div variants={item} className="mt-12 flex items-center justify-center gap-6">
           <a
             href={personalInfo.github}
             target="_blank"
@@ -152,13 +248,13 @@ export default function Hero() {
           >
             {personalInfo.email}
           </a>
-        </div>
+        </motion.div>
 
         {/* Scroll cue */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <div className="w-px h-12 bg-gradient-to-b from-zinc-300 dark:from-zinc-700 to-transparent mx-auto" />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

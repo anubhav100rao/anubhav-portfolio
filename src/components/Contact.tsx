@@ -1,4 +1,5 @@
 import { personalInfo } from "@/lib/data";
+import SectionHeader from "@/components/SectionHeader";
 
 export default function Contact() {
   const links = [
@@ -35,14 +36,12 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
-        <SectionLabel>Contact</SectionLabel>
-        <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mt-3 mb-4">
-          Let&apos;s Connect
-        </h2>
-        <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-12 max-w-lg">
-          I&apos;m always open to interesting conversations — whether it&apos;s a new role, a project
-          idea, or just saying hi.
-        </p>
+        <SectionHeader
+          label="Contact"
+          title="Let's"
+          accent="Connect"
+          subtitle="I'm always open to interesting conversations — whether it's a new role, a project idea, or just saying hi."
+        />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {links.map((link) => (
@@ -83,17 +82,6 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  );
-}
-
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-blue-500 text-sm font-mono">{"// "}</span>
-      <span className="text-blue-500 dark:text-blue-400 text-sm font-semibold uppercase tracking-widest">
-        {children}
-      </span>
-    </div>
   );
 }
 

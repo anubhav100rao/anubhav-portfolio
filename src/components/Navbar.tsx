@@ -2,20 +2,21 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "CodeTraces", href: "#codetraces" },
   { label: "Experience", href: "#experience" },
+  { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
+  { label: "CodeTraces", href: "#codetraces" },
   { label: "Skills", href: "#skills" },
   { label: "Blog", href: "/blog" },
   { label: "Cover Letter", href: "/cover-letter" },
   { label: "Contact", href: "#contact" },
 ];
 
-const SECTION_IDS = ["hero", "about", "codetraces", "experience", "projects", "skills", "blog", "contact"];
+const SECTION_IDS = ["hero", "experience", "about", "projects", "codetraces", "skills", "blog", "contact"];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -55,7 +56,12 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 md:top-4 px-4 w-full transition-all duration-300">
+    <motion.nav
+      initial={{ y: -32, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-0 left-0 right-0 z-50 md:top-4 px-4 w-full transition-all duration-300"
+    >
       <div
         className={`max-w-5xl mx-auto rounded-2xl md:rounded-full transition-all duration-300 flex items-center justify-end md:justify-center ${
           scrolled
@@ -86,7 +92,11 @@ export default function Navbar() {
               >
                 {link.label}
                 {isActive(link.href) && (
-                  <span className="absolute -bottom-1 left-1 right-1 h-[2px] bg-blue-500 rounded-full" />
+                  <motion.span
+                    layoutId="nav-active-underline"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                    className="absolute -bottom-1 left-1 right-1 h-[2px] bg-blue-500 rounded-full"
+                  />
                 )}
               </a>
             )
@@ -120,8 +130,14 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
+      <AnimatePresence>
       {menuOpen && (
-        <div className="md:hidden mt-2 rounded-2xl glass-panel px-6 py-4 flex flex-col gap-4 shadow-xl border border-zinc-200/50 dark:border-zinc-800/40">
+        <motion.div
+          initial={{ opacity: 0, y: -12, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -12, scale: 0.98 }}
+          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="md:hidden mt-2 rounded-2xl glass-panel px-6 py-4 flex flex-col gap-4 shadow-xl border border-zinc-200/50 dark:border-zinc-800/40">
           {navLinks.map((link) =>
             link.href.startsWith("/") ? (
               <Link
@@ -154,8 +170,9 @@ export default function Navbar() {
           >
             Resume
           </a>
-        </div>
+        </motion.div>
       )}
-    </nav>
+      </AnimatePresence>
+    </motion.nav>
   );
 }

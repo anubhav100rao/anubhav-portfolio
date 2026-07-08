@@ -390,3 +390,114 @@ body {
   border-color: rgba(96, 165, 250, 0.3);
   box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.25);
 }
+
+/* ─────────────────────────────────────────────
+   Motion / Dynamic UI Utilities
+   ───────────────────────────────────────────── */
+
+/* Floating gradient orbs (hero background) */
+@keyframes blob-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(45px, -55px) scale(1.08);
+  }
+  50% {
+    transform: translate(-25px, 25px) scale(0.94);
+  }
+  75% {
+    transform: translate(30px, 40px) scale(1.04);
+  }
+}
+.animate-blob {
+  animation: blob-float 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Panning grid background */
+@keyframes grid-pan {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 64px 64px;
+  }
+}
+.animate-grid-pan {
+  animation: grid-pan 6s linear infinite;
+}
+
+/* Shimmering gradient text */
+@keyframes gradient-x {
+  to {
+    background-position: 200% center;
+  }
+}
+.animate-gradient-x {
+  background-size: 200% auto;
+  animation: gradient-x 3.5s linear infinite;
+}
+
+/* Infinite marquee (tech strip) */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+  will-change: transform;
+}
+.marquee-reverse {
+  animation-direction: reverse;
+}
+.marquee-group:hover .marquee-track {
+  animation-play-state: paused;
+}
+.marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+}
+
+/* Slow conic spin (decorative rings) */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 24s linear infinite;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob,
+  .animate-grid-pan,
+  .animate-gradient-x,
+  .marquee-track,
+  .animate-spin-slow {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

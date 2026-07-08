@@ -1,4 +1,6 @@
 import Navbar from "@/components/Navbar";
+import ReadingProgress from "@/components/ReadingProgress";
+import AmbientBackground from "@/components/AmbientBackground";
 import Hero from "@/components/Hero";
 import CodeTracesShowcase from "@/components/CodeTracesShowcase";
 import About from "@/components/About";
@@ -12,13 +14,15 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white dark:bg-zinc-950">
+    <main className="min-h-screen">
+      <AmbientBackground />
+      <ReadingProgress />
       <Navbar />
       <Hero />
-      <CodeTracesShowcase />
-      <About />
       <Experience />
+      <About />
       <Projects />
+      <CodeTracesShowcase />
       <Achievements />
       <Skills />
       <BlogTeaser />

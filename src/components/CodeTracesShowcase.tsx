@@ -394,7 +394,7 @@ export default function CodeTracesShowcase() {
   ];
 
   return (
-    <section id="codetraces" className="py-24 px-6 relative bg-zinc-50 dark:bg-zinc-950 overflow-hidden">
+    <section id="codetraces" className="py-24 px-6 relative bg-zinc-50/60 dark:bg-zinc-950/60 overflow-hidden">
       {/* Dynamic Background Accents */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-gradient-to-r from-blue-500/10 to-indigo-500/10 dark:from-blue-600/5 dark:to-purple-600/5 rounded-full blur-[100px] pointer-events-none" />
       

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { achievements } from "@/lib/data";
 import FadeIn from "@/components/FadeIn";
+import SectionHeader from "@/components/SectionHeader";
 
 type AchievementItem = (typeof achievements)[number];
 
@@ -37,22 +38,19 @@ const platformIcons: Record<string, React.ReactNode> = {
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="py-24 px-6 relative overflow-hidden bg-white dark:bg-zinc-950">
+    <section id="achievements" className="py-24 px-6 relative overflow-hidden bg-white/50 dark:bg-zinc-950/50">
       {/* Background gradients */}
       <div className="absolute top-1/2 left-1/3 w-[500px] h-[500px] bg-gradient-to-r from-amber-500/5 via-blue-500/5 to-indigo-500/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto relative z-10">
         
         {/* Header */}
-        <div className="mb-14">
-          <SectionLabel>Achievements</SectionLabel>
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mt-3 mb-2">
-            Coding Profiles & Leadership
-          </h2>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-xl">
-            Rankings and performance metrics across top competitive programming platforms and community leadership.
-          </p>
-        </div>
+        <SectionHeader
+          label="Achievements"
+          title="Coding Profiles &"
+          accent="Leadership"
+          subtitle="Rankings and performance metrics across top competitive programming platforms and community leadership."
+        />
 
         {/* Asymmetrical grid for high-end feel */}
         <div className="grid md:grid-cols-2 gap-8">
@@ -237,17 +235,6 @@ function TrophyCard({ item }: { item: AchievementItem }) {
       <div className="mt-4 pt-4 border-t border-zinc-150 dark:border-zinc-900/60">
         {renderSparkline()}
       </div>
-    </div>
-  );
-}
-
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-blue-500 text-sm font-mono">{"// "}</span>
-      <span className="text-blue-500 dark:text-blue-400 text-sm font-semibold uppercase tracking-widest">
-        {children}
-      </span>
     </div>
   );
 }

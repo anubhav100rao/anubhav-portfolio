@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { projects } from "@/lib/data";
-import FadeIn from "@/components/FadeIn";
+import TiltCard from "@/components/TiltCard";
+import SectionHeader from "@/components/SectionHeader";
 
 type Project = (typeof projects)[number];
 
@@ -41,15 +43,12 @@ export default function Projects() {
       <div className="max-w-5xl mx-auto relative z-10">
         
         {/* Header */}
-        <div className="mb-14">
-          <SectionLabel>Projects</SectionLabel>
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mt-3 mb-2">
-            Things I&apos;ve Built
-          </h2>
-          <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-xl">
-            SRE control planes, educational OS kernels, custom database engines, and browser-based consensus visualizers.
-          </p>
-        </div>
+        <SectionHeader
+          label="Projects"
+          title="Things I've"
+          accent="Built"
+          subtitle="SRE control planes, educational OS kernels, custom database engines, and browser-based consensus visualizers."
+        />
 
         {/* Dynamic Category Switcher */}
         <div className="flex flex-wrap gap-2 mb-12 border-b border-zinc-200 dark:border-zinc-800/80 pb-4 overflow-x-auto scrollbar-none">
@@ -83,13 +82,25 @@ export default function Projects() {
         </div>
 
         {/* Project Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {filteredProjects.map((project, i) => (
-            <FadeIn key={project.name} delay={i * 0.05}>
-              <ProjectCard project={project} />
-            </FadeIn>
-          ))}
-        </div>
+        <motion.div layout className="grid md:grid-cols-2 gap-8">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.name}
+                layout
+                initial={{ opacity: 0, scale: 0.92, y: 24 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.92, y: -12 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="h-full"
+              >
+                <TiltCard className="h-full">
+                  <ProjectCard project={project} />
+                </TiltCard>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );
@@ -204,17 +215,6 @@ function ProjectCard({ project }: { project: Project }) {
           backgroundColor: hovered ? project.color : "transparent"
         }}
       />
-    </div>
-  );
-}
-
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-blue-500 text-sm font-mono">{"// "}</span>
-      <span className="text-blue-500 dark:text-blue-400 text-sm font-semibold uppercase tracking-widest">
-        {children}
-      </span>
     </div>
   );
 }
